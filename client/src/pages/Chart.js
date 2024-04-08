@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { CategoryScale,Line } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 import moment from "moment";
+import Chart from "chart.js/auto"; // Import Chart from "chart.js/auto"
+import { TimeScale, LinearScale } from 'chart.js';
+import 'chartjs-adapter-moment';
 
-Chart.register(CategoryScale);
+Chart.register(TimeScale, LinearScale);
+
+
 const ChartComponent = () => {
     const [chartData, setChartData] = useState({
         datasets: [
@@ -25,37 +30,33 @@ const ChartComponent = () => {
             }
         },
         scales: {
-            xAxes: [
-                {
-                    type: "realtime", // 변경된 부분: x축 타입을 "time"으로 수정
-                    distribution: "linear",
-                    time: {
-                        displayFormats: {
-                            second: "h:mm:ss",
-                            minute: "h:mm",
-                            hour: "hA"
-                        }
-                    },
-                    ticks: {
-                        maxRotation: 0,
-                        minRotation: 0,
-                        maxTicksLimit: 30,
-                        source: "auto",
-                        autoSkip: true,
-                        callback: function(value) {
-                            return moment(value).format("HH:mm:ss");
-                        }
+            x: {
+                type: "time",
+                distribution: "linear",
+                time: {
+                    displayFormats: {
+                        second: "h:mm:ss",
+                        minute: "h:mm",
+                        hour: "hA"
+                    }
+                },
+                ticks: {
+                    maxRotation: 0,
+                    minRotation: 0,
+                    maxTicksLimit: 30,
+                    source: "auto",
+                    autoSkip: true,
+                    callback: function(value) {
+                        return moment(value).format("HH:mm:ss");
                     }
                 }
-            ],
-            yAxes: [
-                {
-                    ticks: {
-                        beginAtZero: true,
-                        max: 1
-                    }
+            },
+            y: {
+                ticks: {
+                    beginAtZero: true,
+                    max: 1
                 }
-            ]
+            }
         }
     };
 
