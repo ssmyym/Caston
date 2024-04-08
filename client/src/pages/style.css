@@ -1,0 +1,7 @@
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; /* 그래프의 높이 조절 */
+    padding: 20px; /* 위아래 넓이 조절 */
+}

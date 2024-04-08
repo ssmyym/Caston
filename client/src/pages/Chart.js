@@ -4,7 +4,7 @@ import moment from "moment";
 import Chart from "chart.js/auto"; // Import Chart from "chart.js/auto"
 import { TimeScale, LinearScale } from 'chart.js';
 import 'chartjs-adapter-moment';
-
+import './style.css';
 Chart.register(TimeScale, LinearScale);
 
 
@@ -82,7 +82,7 @@ const ChartComponent = () => {
     }, [chartData]);
 
     return (
-        <div>
+        <div className="chart-container">
             <Line data={chartData} options={options} />
         </div>
     );
